@@ -1161,7 +1161,7 @@ const RecurLensApp = () => {
             </div>
             <div>
               <h1 className="text-lg font-bold tracking-tight text-white flex items-center">
-                RecurLens <span className="text-[10px] ml-2 px-1.5 py-0.5 rounded border border-indigo-500/30 text-indigo-400 bg-indigo-500/10 font-mono">v3.0</span>
+                RecurLens <span className="text-[10px] ml-2 px-1.5 py-0.5 rounded border border-indigo-500/30 text-indigo-400 bg-indigo-500/10 font-mono">Built with ❤️ by Aryan! </span>
               </h1>
             </div>
           </div>
