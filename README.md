@@ -1,6 +1,7 @@
 
 
 # RecurLens: A Multimodal AI That Thinks Before It Answers
+![Redefining how you prmopt](images/page.png)
 
 > *From guessing to understanding.*
 
