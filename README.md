@@ -1,4 +1,4 @@
-# 🌀 RecurLens v2.0: Recursive Meta-Cognition Engine
+#  RecurLens : Recursive Meta-Cognition Engine
 
 > **"Stop settling for the first thought. Let the machine think about how it thinks."**
 
@@ -11,110 +11,181 @@
 
 ---
 
-## 🧠 The Architecture
 
-RecurLens operates on a **Human-in-the-Loop Recursive Cycle**:
+> **“Why answer once when you can answer five times and argue with yourself first?”**
 
-```mermaid
-graph LR
-    A[Raw Input (Audio/Vision)] --> B{Initializer}
-    B --> C[Meta-Prompt v0]
-    C --> D{The Critic}
-    D -- "Ambiguous?" --> E[Ask User Clarification]
-    D -- "Flawed?" --> F[The Refiner]
-    F --> C
-    D -- "Converged (Score > 0.88)" --> G[Executor]
-    G --> H[Deep Thinking Model]
-    H --> I[Final Output + Visualization]
-```
+RecurLens is what happens when you force an AI to *think before it speaks*.
+It does not trust your prompt.
+It does not trust itself.
+It does not trust anything until a recursive loop of Critics and Refiners have beaten the prompt into something resembling a coherent plan.
 
-### 1. 👁️ Multimodal Cortex
-*   **Vision Stream:** Analyzes images for spatial relations, objects, and *ambiguities*.
-*   **Audio Stream:** Transcribes speech and detects **Emotional Tone** (Urgency, Frustration, Curiosity) to adjust the personality of the response.
+This is not a chatbot.
+This is a *self-doubting, self-improving, multimodal reasoning machine* that refuses to move on until it’s satisfied.
 
-### 2. 🔄 The Loop (The "Ghost" in the Machine)
-The system enters a `while(true)` loop of self-improvement:
-*   **The Critic:** A harsh evaluator that scores the current plan on Clarity, Safety, and Logic.
-*   **The Refiner:** Rewrites the prompt to address the Critic's complaints.
-*   **Convergence:** Calculates **Cosine Similarity** between iterations to detect when the idea has stabilized.
-
-### 3. ⚡ Cognitive Execution
-Once the prompt is perfect, it is fed into **Gemini 2.5** with a reserved `thinkingBudget` of 4096 tokens. It generates:
-*   The Final Answer (Markdown)
-*   A Visual Artifact (Image Generation)
-*   A Neural Speech Output (TTS)
+(If only humans worked this way.)
 
 ---
 
-## 🚀 Installation & Initialization
+RecurLens runs on a simple philosophy:
 
-### Prerequisites
-*   Node.js 18+
-*   A Google Cloud Project with **Gemini API** access (Paid tier required for Thinking/Search features).
+**The first answer is garbage. Make it better. Then do that again. And again.**
 
-### 1. Clone the Neural Link
+```graph LR
+    A[Your Input] --> B{Initializer<br/>(“What Fresh Chaos Is This?”)}
+    B --> C[Meta-Prompt v0]
+    C --> D{Critic<br/>(Your Harshest Judge)}
+    D -->|Ambiguous| E[Interrogate the User]
+    D -->|Pathetic| F[Refiner<br/>(Make It Less Bad)]
+    F --> C
+    D -->|Finally Acceptable| G[Executor]
+    G --> H[Gemini 2.5 Flash<br/>("Deep Thought Mode")]
+    H --> I[Final Output (+ Optional Pretty Picture)]
+```
+
+### Multimodal Processing
+
+RecurLens consumes:
+
+* **Vision** → captions, objects, region-level weirdness, possible contradictions
+* **Audio** → transcription + emotional tone (panic? boredom? existential dread?)
+
+Everything you provide becomes another datapoint to judge you with.
+
+---
+
+### The Recursive Loop:
+
+A cycle of intellectual self-loathing and improvement:
+
+#### The Critic
+
+Scores the current plan on:
+
+* clarity
+* completeness
+* grounding
+* safety
+* logical coherence
+* ambiguity reduction
+
+If the score is low, it pulls no punches.
+
+#### The Refiner
+
+Its job description: *“Fix whatever disaster the Critic just complained about.”*
+It rewrites the entire meta-prompt with more detail, more structure, more safety, and occasionally a little more pity.
+
+#### Convergence Detector
+
+Uses cosine similarity to check when the system is, finally, tired of improving itself.
+If similarity > 0.98 or score > 0.88, it's declared “good enough.”
+
+(Like your college essays.)
+
+---
+
+### Execution
+
+When the loop is satisfied, the final meta-prompt is executed using Gemini 2.5 Flash with a generous thinking budget.
+
+Outputs:
+
+* a final answer
+* an optional generated image
+* optional TTS that reads the answer in a voice more confident than the model actually feels
+
+---
+
+## 2. Installation
+
+You will need:
+
+* Node.js 18+
+* A Google Cloud project with Gemini API access
+* A willingness to let your computer insult your prompts repeatedly
+
+### Setup
+
 ```bash
 git clone https://github.com/your-username/recurlens.git
 cd recurlens
-```
-
-### 2. Install Dependencies
-```bash
 npm install
-```
-
-### 3. Ignite
-```bash
 npm run dev
 ```
 
----
-
-## 🎮 Operational Manual
-
-### 🔑 The Key
-You will be prompted for a **Gemini API Key** upon startup. This key is stored in memory only.
-> **Note:** RecurLens uses `gemini-2.5-flash`, `gemini-2.5-flash-image`, and `gemini-2.5-flash-preview-tts`.
-
-### 🛡️ Modes of Operation
-1.  **Troubleshoot:** Upload a server log screenshot + explain the crash. RecurLens will hypothesize root causes before answering.
-2.  **Creative:** Ask for a sci-fi novel intro. RecurLens will define the themes and tone before writing a single word.
-3.  **Planning:** Ask for a travel itinerary. RecurLens will identify missing constraints (budget, interests) and ask you clarification questions before planning.
-
-### 🐛 Debugging the Mind
-Click the **Bug Icon** in the header to reveal the `[RAW]` logs.
-*   See exactly what the **Critic** hates about your prompt.
-*   Watch the **Refiner** rewrite the JSON schema in real-time.
+On launch, you’ll be asked for your Gemini API key—
+**which RecurLens does not store, because it respects you more than you respect yourself.**
 
 ---
 
-## 🛠️ Tech Stack
+## 3. Modes of Operation
 
-*   **Frontend:** React 19 + TypeScript + Vite
-*   **Styling:** Tailwind CSS (Glassmorphism UI)
-*   **AI SDK:** `@google/genai` (Official V2 SDK)
-*   **Schemas:** Strict JSON enforcement via `responseSchema`.
-*   **Audio:** Native Web Audio API for PCM decoding/encoding.
+### Troubleshooting
+
+Upload a screenshot, describe the issue.
+RecurLens will:
+
+* infer what is *actually* happening
+* ask you clarifying questions you wish you'd anticipated
+* eventually give you a correct diagnosis
+
+### Creative Mode
+
+Request a story, poem, or worldbuilding concept.
+RecurLens will:
+
+* argue with itself about tone, theme, and style
+* rewrite the prompt until it likes it
+* produce something surprisingly polished
+
+### Planning
+
+Ask for an itinerary.
+RecurLens will:
+
+* complain about missing constraints
+* interrogate you
+* then actually give you a plan
 
 ---
 
-## ⚠️ Safety Protocols
+## 4. Debug Mode
 
-RecurLens includes a dedicated **Risk Analysis** module in the meta-prompt state.
-If the requested task involves high-risk topics, the system will:
-1.  Flag the risk level to `HIGH`.
-2.  Inject a `mitigation` strategy into the execution plan.
-3.  Prepend a Safety Advisory to the final output.
+Click the debug panel to see:
 
----
+* every meta-prompt iteration
+* every Critic rant
+* every Refiner rewrite
+* how close each iteration is to giving up
 
-## 🔮 Future Roadmap
-
-*   [ ] **Vector Memory:** Long-term storage of successful prompt patterns.
-*   [ ] **Tool Use:** Allow the Executor to run Python code directly in the browser.
-*   [ ] **Swarm Mode:** Multiple Critics debating via the Live API.
+Basically: a live stream of the AI’s internal existential crisis.
 
 ---
 
-> *"The first answer is rarely the best answer."*
+## 5. Tech Stack
+
+* React 19 + TypeScript
+* Tailwind CSS
+* `@google/genai`
+* Web Audio API
+* Strict JSON schemas
+* More recursion than is healthy
+
+---
+
+## 6. Safety
+
+RecurLens includes:
+
+* risk assessment
+* mitigation planning
+* safety advisories
+
+If you ask something questionable, RecurLens will:
+
+1. Warn you
+2. Fix your prompt
+3. Still refuse to help until it's safe
+
+A responsible adult, basically.
 
